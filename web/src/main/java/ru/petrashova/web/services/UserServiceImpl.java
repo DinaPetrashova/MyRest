@@ -1,6 +1,5 @@
 package ru.petrashova.web.services;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,14 +15,11 @@ import java.util.Optional;
 
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    RoleRepository roleRepository;
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -41,22 +37,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return user.get();
     }
-    public User findUserById(int userId) {
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
-    }
-
-    public List<User> allUsers() {
-        return userRepository.findAll();
-    }
-
-    public boolean deleteUser(int userId) {
-        if (userRepository.findById(userId).isPresent()) {
-            userRepository.deleteById(userId);
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public List<User> getAllUsers() {
@@ -69,7 +49,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional
     public Optional<User> getUserById(int id) {
         return userRepository.findById(id);
     }

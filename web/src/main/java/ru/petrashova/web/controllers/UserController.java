@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping("/")
     public String index(Model model){
-        return "redirect:/login";
+        return "redirect:/";
     }
 
 

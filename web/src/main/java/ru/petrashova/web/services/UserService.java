@@ -13,6 +13,4 @@ public interface UserService {
 
     void update(User updatedUser, int id);
     void delete(int id);
-
-   // UserDetails loadUserByUsername(String login);
 }
