@@ -35,12 +35,12 @@ public class RestController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity <User> currentUser(Principal principal){
+    public ResponseEntity <User> userCurrent(Principal principal){
         return new ResponseEntity <> (userService.getUser(principal.getName()), HttpStatus.OK);
     }
 
     @GetMapping("/admin/{id}")
-    public ResponseEntity <User> userBiId(@PathVariable Integer id){
+    public ResponseEntity <User> userById(@PathVariable Integer id){
         return new ResponseEntity (userService.getUserById(id), HttpStatus.OK);
     }
 
@@ -51,7 +51,7 @@ public class RestController {
 
     }
 
-    @PutMapping("/admin")
+    @PutMapping("/admin/{id}")
     public ResponseEntity <User> editUser (@RequestBody User user, @PathVariable Integer id) {
         userService.update(user, id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
