@@ -31,19 +31,7 @@ public class AdminController {
 //        model.addAttribute("newUser", new User());
         return "/main";
     }
-//    @PostMapping(value = "/new")
-//    public String newUser(@ModelAttribute("newUser") @Valid User user){
-//        userService.save(user);
-//        return "redirect:/admin";
-//    }
 
-//    @PutMapping("/{id}")
-//    public String edit(@ModelAttribute("user") @Valid User user, @PathVariable int id){
-//        System.out.println("patch");
-//        userService.update(user, id);
-//        System.out.println(user.getId());
-//        return "redirect:/admin";
-//    }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable int id){

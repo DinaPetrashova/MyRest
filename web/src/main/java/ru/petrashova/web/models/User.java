@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Поле 'Имя' не должно быть пустым")
     private String name;
     @Column(name = "last_name")
-  //  @NotEmpty(message = "Поле 'Фамилия' не должно быть пустым")
+    @NotEmpty(message = "Поле 'Фамилия' не должно быть пустым")
     private String lastName;
     @Column(name = "year_of_birth")
     @Min(value = 1900, message = "Год рождения должен быть больше 1900")

@@ -13,6 +13,14 @@ const email_ed = document.getElementById('edit-email');
 const password_ed = document.getElementById('edit-password');
 
 <!-- Константы для удаления пользователя -->
+const form_del = document.getElementById('formDeleteUser');
+const id_del = document.getElementById('delete-id');
+const name_del = document.getElementById('delete-name');
+const lastname_del = document.getElementById('delete-lastname');
+const year_del = document.getElementById('delete-year');
+const login_del = document.getElementById('delete-login');
+const email_del = document.getElementById('delete-email');
+const password_del = document.getElementById('delete-password');
 
 <!-- Панель админа и таблица с юзерами -->
 
@@ -50,7 +58,10 @@ function loadTableData(listAllUser) {
         onclick="loadEditData(${user.id})">Edit</button>
     </td>
     <td>
-        <button class="btn btn-danger" data-bs-toogle="modal"
+        <button class="btn btn-danger" 
+        data-bs-toogle="modal"
+        data-bs-target="#deleteModal" 
+        onclick="loadDeleteData(${user.id})"
         >Delete</button>
     </td>
 </tr>`
@@ -156,5 +167,53 @@ async function editUser() {
 }
 
 <!-- Модальное окно для удаления пользователя  -->
-
+async function loadDeleteData(id) {
+    const  urlDataDel = 'api/admin/' + id;
+    let usersPageDel = await fetch(urlDataDel);
+    if (usersPageDel.ok) {
+        await usersPageDel.json().then(user => {
+            id_del.value = `${user.id}`;
+            name_del.value = `${user.name}`;
+            lastname_del.value = `${user.lastName}`;
+            year_del.value = `${user.year}`;
+            login_del.value = `${user.login}`;
+            email_del.value = `${user.email}`;
+            password_del.value = `${user.password}`;
+        })
+        document.getElementById("deleteModal").style.display = "block";
+    } else {
+        alert(`Error, ${usersPageDel.status}`)
+    }
+}
+async function deleteUser() {
+    console.log(form_del);
+    let urlDelete = 'api/admin/' + id_del.value;
+    let listOfRole = [];
+    for (let i=0; i<form_del.roles.options.length; i++) {
+        if (form_del.roles.options[i].selected) {
+            listOfRole.push(form_del.roles.options[i].value);
+        }
+    }
+    let method = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: id_del.value,
+            name: form_del.name.value,
+            lastName: form_del.lastname.value,
+            year: form_del.year.value,
+            login: form_del.login.value,
+            email: form_del.email.value,
+            password: form_del.password.value,
+            roles: listOfRole
+        })
+    }
+    console.log(urlDelete, method);
+    await fetch(urlDelete,method).then(() => {
+        document.getElementById("deleteModal").style.display = "none";
+        getAdminPage();
+    })
+}
 getAdminPage();

@@ -384,6 +384,114 @@
                         </div>
                     </div>
                 </div>
+ <!--Модальное окно для удаления пользователя-->
+                <div class="modal"
+                     id="deleteModal"
+                     tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit User</h5>
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form class="text-center" id="formDeleteUser">
+                                    <div class="mb-3">
+                                        <label for="delete-id"
+                                               class="col-form-label d-flex justify-content-center" ><b>ID</b>:</label>
+                                        <input disabled type="text"
+                                               class="form-control"
+                                               id="delete-id"
+                                               name="id">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="delete-name"
+                                               class="col-form-label d-flex justify-content-center"><b>First name</b>:</label>
+                                        <input readonly type="text"
+                                               class="form-control"
+                                               id="delete-name"
+                                               name="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="delete-lastname"
+                                               class="col-form-label d-flex justify-content-center"><b>Last name</b>:</label>
+                                        <input readonly type="text"
+                                               class="form-control"
+                                               id="delete-lastname"
+                                               name="lastname">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="delete-year"
+                                               class="col-form-label d-flex justify-content-center"><b>Age</b>:</label>
+                                        <input readonly type="number"
+                                               class="form-control"
+                                               id="delete-year"
+                                               name="year">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="delete-login"
+                                               class="col-form-label d-flex justify-content-center"><b>Login</b>:</label>
+                                        <input readonly type="text"
+                                               class="form-control"
+                                               id="delete-login"
+                                               name="login">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="delete-email"
+                                               class="col-form-label d-flex justify-content-center"><b>Email</b>:</label>
+                                        <input readonly type="email"
+                                               class="form-control"
+                                               id="delete-email"
+                                               name="email">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="delete-password"
+                                               class="col-form-label d-flex justify-content-center">
+                                            <b>Password</b>
+                                        </label>
+                                        <input readonly type="password"
+                                               name="password"
+                                               class="form-control"
+                                               id="delete-password">
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="delete-role"
+                                               class="col-form-label d-flex justify-content-center"><b>Role</b>:</label>
+                                        <select multiple
+                                                name="roles"
+                                                id="delete-role"
+                                                class="form-select"
+                                                size="2">
+                                            <option value="1">
+                                                ADMIN
+                                            </option>
+                                            <option value="2">
+                                                USER
+                                            </option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <input onclick="deleteUser()"
+                                       class="btn btn-danger"
+                                       value="Delete">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 	</div>
