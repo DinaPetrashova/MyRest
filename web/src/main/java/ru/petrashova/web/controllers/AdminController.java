@@ -14,28 +14,16 @@ import java.security.Principal;
 @RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
-    private final RoleService roleService;
 
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
-
 
     @GetMapping()
     public String admin(Model model, Principal principal){
-//        model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("userCurrent", userService.getUser(principal.getName()));
-//        model.addAttribute("roles",roleService.getAll());
-//        model.addAttribute("newUser", new User());
         return "/main";
     }
 
-
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable int id){
-        userService.delete(id);
-        return "redirect:/admin";
-    }
 }

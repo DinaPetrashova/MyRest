@@ -21,12 +21,10 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http   .cors().disable()
-                .csrf().disable()  // удалить после отладки
-                .authorizeHttpRequests()
-                .requestMatchers("/**", "/login", "/api/**").permitAll()
-                .requestMatchers("/admin").permitAll() //hasRole("ADMIN")
-                .requestMatchers("/user").permitAll() //hasAnyRole("ADMIN", "USER" )
+        http    .authorizeHttpRequests()
+                .requestMatchers("/", "/login").permitAll()
+                .requestMatchers("/admin").hasRole("ADMIN")
+                .requestMatchers("/user").hasAnyRole("ADMIN", "USER" )
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(successUserHandler)

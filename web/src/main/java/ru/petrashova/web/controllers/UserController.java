@@ -20,16 +20,13 @@ public class UserController {
 
 
     @GetMapping("/user/{id}")
-    String user (Model model, Principal principal, @PathVariable int id) {
-        model.addAttribute("users", userService.getAllUsers());
+    public String user (Model model, Principal principal, @PathVariable int id) {
         model.addAttribute("userCurrent", userService.getUser(principal.getName()));
         return "/main";
     }
-
     @GetMapping("/")
     public String index(Model model){
-        return "redirect:/";
+        return "redirect:/login";
     }
-
 
 }
