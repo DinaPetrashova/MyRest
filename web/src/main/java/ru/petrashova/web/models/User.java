@@ -5,7 +5,11 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import java.util.*;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -20,7 +24,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Поле 'Имя' не должно быть пустым")
     private String name;
     @Column(name = "last_name")
-    @NotEmpty(message = "Поле 'Фамилия' не должно быть пустым")
+  //  @NotEmpty(message = "Поле 'Фамилия' не должно быть пустым")
     private String lastName;
     @Column(name = "year_of_birth")
     @Min(value = 1900, message = "Год рождения должен быть больше 1900")
@@ -40,7 +44,7 @@ public class User implements UserDetails {
          name = "users_roles",
          joinColumns = @JoinColumn(name = "user_id"),
          inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set <Role> roles = new HashSet<>();
 
     public User() {
     }

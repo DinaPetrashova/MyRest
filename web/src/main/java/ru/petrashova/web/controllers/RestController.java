@@ -41,18 +41,19 @@ public class RestController {
 
     @GetMapping("/admin/{id}")
     public ResponseEntity <User> userById(@PathVariable Integer id){
-        return new ResponseEntity (userService.getUserById(id), HttpStatus.OK);
+        return new ResponseEntity  (userService.getUserById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/admin")
+    @PostMapping(value = "/admin/new")
     public ResponseEntity <User> newUser (@RequestBody User user) {
         userService.save(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
 
-    @PutMapping("/admin/{id}")
+    @PatchMapping("/admin/{id}")
     public ResponseEntity <User> editUser (@RequestBody User user, @PathVariable Integer id) {
+        System.out.println(user);
         userService.update(user, id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

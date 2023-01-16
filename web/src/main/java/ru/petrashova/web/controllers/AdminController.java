@@ -25,25 +25,25 @@ public class AdminController {
 
     @GetMapping()
     public String admin(Model model, Principal principal){
-        model.addAttribute("users", userService.getAllUsers());
+//        model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("userCurrent", userService.getUser(principal.getName()));
-        model.addAttribute("roles",roleService.getAll());
-        model.addAttribute("newUser", new User());
+//        model.addAttribute("roles",roleService.getAll());
+//        model.addAttribute("newUser", new User());
         return "/main";
     }
-    @PostMapping(value = "/new")
-    public String newUser(@ModelAttribute("newUser") @Valid User user){
-        userService.save(user);
-        return "redirect:/admin";
-    }
+//    @PostMapping(value = "/new")
+//    public String newUser(@ModelAttribute("newUser") @Valid User user){
+//        userService.save(user);
+//        return "redirect:/admin";
+//    }
 
-    @PutMapping("/{id}")
-    public String edit(@ModelAttribute("user") @Valid User user, @PathVariable int id){
-        System.out.println("patch");
-        userService.update(user, id);
-        System.out.println(user.getId());
-        return "redirect:/admin";
-    }
+//    @PutMapping("/{id}")
+//    public String edit(@ModelAttribute("user") @Valid User user, @PathVariable int id){
+//        System.out.println("patch");
+//        userService.update(user, id);
+//        System.out.println(user.getId());
+//        return "redirect:/admin";
+//    }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable int id){
